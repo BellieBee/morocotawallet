@@ -15,10 +15,13 @@ class WalletTest extends TestCase
      *
      * @return void
      */
+
+    use RefreshDatabase;
+
     public function testGetWallet()
     {
         $wallet = Wallet::factory()->create(); //creamos un modelo persistente para la prueba unitaria en la que generamos una wallet con datos fake
-        $transfers = Transfer::factory()->count(3)->create([
+        $transfers = Transfer::factory()->create([
             'wallet_id' => $wallet->id
         ]); //creamos un modelo persistente tbn para transfers y le especificamos que para los registros use el id del wallet creado previamente
 
@@ -33,6 +36,6 @@ class WalletTest extends TestCase
                 ]);
         //esperamos recibir una respuesta 200 y la siguiente estructura en JSON
 
-        $this->assertCount(3, $response->json()['transfers']); //esperamos recibir 3 registros de transfers en json too
+        $this->assertCount(1, $response->json()['transfers']); //esperamos recibir 3 registros de transfers en json too
     }
 }
