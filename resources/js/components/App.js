@@ -2,7 +2,7 @@ import React from "react";
 import TransferForm from "./TransferForm";
 import TransferList from "./TransferList";
 
-const App = ({data, form, onChange}) => {
+const App = ({data, form, onChange, onSubmit}) => {
 
     return (
         <div className="container">
@@ -16,6 +16,7 @@ const App = ({data, form, onChange}) => {
                     <TransferForm
                         form={form}
                         onChange={onChange}
+                        onSubmit={onSubmit}
                     />
                 </div>
                 <div className="col-md-6">

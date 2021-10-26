@@ -10,15 +10,35 @@ const AppContainer = () => {
     const [ form, setForm ] = useState({'description': '', 'amount': '', 'wallet_id': 1})
 
     function handleChange (e) {
-
         let formState = {
             'description': e.target.name == "description" ? e.target.value : form.description,
             'amount': e.target.name == "amount" ? e.target.value : form.amount,
             'wallet_id': 1
         }
         setForm(formState)
-        //setForm({[e.target.name]: e.target.value})
-        //console.log(e.target.value)
+    }
+
+    async function handleSubmit (e) {
+        e.preventDefault()
+        try {
+            let config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(form)
+            }
+            let res = await fetch('http://morocotawallet.dw/api/transfer', config)
+            let dataTransfer = await res.json()
+            setForm({'description': dataTransfer.description, 'amount': dataTransfer.amount, 'wallet_id': 1})
+            data.transfers = data.transfers.concat(dataTransfer)
+            data.money = parseFloat(data.money) + (parseFloat(dataTransfer.amount))
+            useFetchWallet('http://morocotawallet.dw/api/wallet')
+        }
+        catch (error) {
+            setForm({error})
+        }
     }
 
     if(loading)
@@ -30,6 +50,7 @@ const AppContainer = () => {
             data={data}
             form={form}
             onChange={handleChange}
+            onSubmit={handleSubmit}
         />
     )
 }

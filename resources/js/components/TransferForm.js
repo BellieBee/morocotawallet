@@ -1,7 +1,7 @@
 import React from "react";
 
-const TransferForm = ({form, onChange}) => (
-    <form className="row g-3">
+const TransferForm = ({form, onChange, onSubmit}) => (
+    <form className="row g-3" onSubmit={onSubmit}>
         <div className="col">
             <input
                 type="text"

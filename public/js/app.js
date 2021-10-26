@@ -2120,7 +2120,8 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App(_ref) {
   var data = _ref.data,
       form = _ref.form,
-      onChange = _ref.onChange;
+      onChange = _ref.onChange,
+      onSubmit = _ref.onSubmit;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "container",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -2137,7 +2138,8 @@ var App = function App(_ref) {
         className: "col-md-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_TransferForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
           form: form,
-          onChange: onChange
+          onChange: onChange,
+          onSubmit: onSubmit
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "col-md-6",
@@ -2202,9 +2204,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var TransferForm = function TransferForm(_ref) {
   var form = _ref.form,
-      onChange = _ref.onChange;
+      onChange = _ref.onChange,
+      onSubmit = _ref.onSubmit;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
     className: "row g-3",
+    onSubmit: onSubmit,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "col",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
@@ -2412,12 +2416,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/App */ "./resources/js/components/App.js");
-/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Loading */ "./resources/js/components/Loading.js");
-/* harmony import */ var _Error500__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Error500 */ "./resources/js/pages/Error500.js");
-/* harmony import */ var _hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hooks/useFetchWallet */ "./resources/js/hooks/useFetchWallet.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/App */ "./resources/js/components/App.js");
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var _Error500__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Error500 */ "./resources/js/pages/Error500.js");
+/* harmony import */ var _hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../hooks/useFetchWallet */ "./resources/js/hooks/useFetchWallet.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2439,12 +2451,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AppContainer = function AppContainer() {
-  var _useFetchWallet = (0,_hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_4__["default"])('http://morocotawallet.dw/api/wallet'),
+  var _useFetchWallet = (0,_hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__["default"])('http://morocotawallet.dw/api/wallet'),
       data = _useFetchWallet.data,
       loading = _useFetchWallet.loading,
       error = _useFetchWallet.error;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     'description': '',
     'amount': '',
     'wallet_id': 1
@@ -2459,16 +2471,75 @@ var AppContainer = function AppContainer() {
       'amount': e.target.name == "amount" ? e.target.value : form.amount,
       'wallet_id': 1
     };
-    setForm(formState); //setForm({[e.target.name]: e.target.value})
-    //console.log(e.target.value)
+    setForm(formState);
   }
 
-  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], {});
-  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Error500__WEBPACK_IMPORTED_MODULE_3__["default"], {});
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  function handleSubmit(_x) {
+    return _handleSubmit.apply(this, arguments);
+  }
+
+  function _handleSubmit() {
+    _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var config, res, dataTransfer;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              _context.prev = 1;
+              config = {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(form)
+              };
+              _context.next = 5;
+              return fetch('http://morocotawallet.dw/api/transfer', config);
+
+            case 5:
+              res = _context.sent;
+              _context.next = 8;
+              return res.json();
+
+            case 8:
+              dataTransfer = _context.sent;
+              setForm({
+                'description': dataTransfer.description,
+                'amount': dataTransfer.amount,
+                'wallet_id': 1
+              });
+              data.transfers = data.transfers.concat(dataTransfer);
+              data.money = parseFloat(data.money) + parseFloat(dataTransfer.amount);
+              (0,_hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__["default"])('http://morocotawallet.dw/api/wallet');
+              _context.next = 18;
+              break;
+
+            case 15:
+              _context.prev = 15;
+              _context.t0 = _context["catch"](1);
+              setForm({
+                error: _context.t0
+              });
+
+            case 18:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[1, 15]]);
+    }));
+    return _handleSubmit.apply(this, arguments);
+  }
+
+  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {});
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Error500__WEBPACK_IMPORTED_MODULE_4__["default"], {});
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: data,
     form: form,
-    onChange: handleChange
+    onChange: handleChange,
+    onSubmit: handleSubmit
   });
 };
 
