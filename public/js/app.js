@@ -2505,30 +2505,25 @@ var AppContainer = function AppContainer() {
 
             case 8:
               dataTransfer = _context.sent;
-              setForm({
-                'description': dataTransfer.description,
-                'amount': dataTransfer.amount,
-                'wallet_id': 1
-              });
               data.transfers = data.transfers.concat(dataTransfer);
               data.money = parseFloat(data.money) + parseFloat(dataTransfer.amount);
               (0,_hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__["default"])('http://morocotawallet.dw/api/wallet');
-              _context.next = 18;
+              _context.next = 17;
               break;
 
-            case 15:
-              _context.prev = 15;
+            case 14:
+              _context.prev = 14;
               _context.t0 = _context["catch"](1);
               setForm({
                 error: _context.t0
               });
 
-            case 18:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 15]]);
+      }, _callee, null, [[1, 14]]);
     }));
     return _handleSubmit.apply(this, arguments);
   }

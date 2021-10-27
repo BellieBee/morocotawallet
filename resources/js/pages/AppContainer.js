@@ -31,7 +31,6 @@ const AppContainer = () => {
             }
             let res = await fetch('http://morocotawallet.dw/api/transfer', config)
             let dataTransfer = await res.json()
-            setForm({'description': dataTransfer.description, 'amount': dataTransfer.amount, 'wallet_id': 1})
             data.transfers = data.transfers.concat(dataTransfer)
             data.money = parseFloat(data.money) + (parseFloat(dataTransfer.amount))
             useFetchWallet('http://morocotawallet.dw/api/wallet')
