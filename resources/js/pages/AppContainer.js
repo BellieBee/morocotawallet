@@ -3,10 +3,10 @@ import App from "../components/App"
 import Loading from "../components/Loading"
 import FatalError from "./Error500";
 import useFetchWallet from "../hooks/useFetchWallet";
-//import useFormTransfers from "../hooks/useFormTransfers";
+import url from "../url";
 
 const AppContainer = () => {
-    const { data, loading, error } = useFetchWallet('http://morocotawallet.dw/api/wallet')
+    const { data, loading, error } = useFetchWallet(`${url}/wallet`)
     const [ form, setForm ] = useState({description: '', amount: '', wallet_id: 1})
     const [ submited, setSubmit ] = useState(false)
 
@@ -31,7 +31,7 @@ const AppContainer = () => {
                 },
                 body: JSON.stringify(form)
             }
-            let res = await fetch('http://morocotawallet.dw/api/transfer', config)
+            let res = await fetch(`${url}/transfer`, config)
             let dataTransfer = await res.json()
             setForm({
                 description: dataTransfer.description,

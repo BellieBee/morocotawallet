@@ -2213,7 +2213,9 @@ var TransferForm = function TransferForm(_ref) {
     className: "row g-3",
     onSubmit: onSubmit,
     children: [isSubmit == false ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      children: " Se envio el form"
+      className: "alert alert-success",
+      role: "alert",
+      children: "Se registr\xF3 la transferencia"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "col",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
@@ -2428,7 +2430,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Loading */ "./resources/js/components/Loading.js");
 /* harmony import */ var _Error500__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Error500 */ "./resources/js/pages/Error500.js");
 /* harmony import */ var _hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../hooks/useFetchWallet */ "./resources/js/hooks/useFetchWallet.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../url */ "./resources/js/url.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2451,12 +2454,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- //import useFormTransfers from "../hooks/useFormTransfers";
+
 
 
 
 var AppContainer = function AppContainer() {
-  var _useFetchWallet = (0,_hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__["default"])('http://morocotawallet.dw/api/wallet'),
+  var _useFetchWallet = (0,_hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__["default"])("".concat(_url__WEBPACK_IMPORTED_MODULE_6__["default"], "/wallet")),
       data = _useFetchWallet.data,
       loading = _useFetchWallet.loading,
       error = _useFetchWallet.error;
@@ -2507,7 +2510,7 @@ var AppContainer = function AppContainer() {
                 body: JSON.stringify(form)
               };
               _context.next = 5;
-              return fetch('http://morocotawallet.dw/api/transfer', config);
+              return fetch("".concat(_url__WEBPACK_IMPORTED_MODULE_6__["default"], "/transfer"), config);
 
             case 5:
               res = _context.sent;
@@ -2545,9 +2548,9 @@ var AppContainer = function AppContainer() {
     return _handleSubmit.apply(this, arguments);
   }
 
-  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {});
-  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Error500__WEBPACK_IMPORTED_MODULE_4__["default"], {});
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  if (loading) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], {});
+  if (error) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Error500__WEBPACK_IMPORTED_MODULE_4__["default"], {});
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: data,
     form: form,
     onChange: handleChange,
@@ -2596,6 +2599,22 @@ var FatalError = function FatalError() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FatalError);
+
+/***/ }),
+
+/***/ "./resources/js/url.js":
+/*!*****************************!*\
+  !*** ./resources/js/url.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var url = 'http://morocotawallet.dw/api';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (url);
 
 /***/ }),
 

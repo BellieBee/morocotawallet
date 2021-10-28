@@ -2,7 +2,7 @@ import React from "react";
 
 const TransferForm = ({form, onChange, onSubmit, isSubmit}) => (
     <form className="row g-3" onSubmit={onSubmit}>
-        {isSubmit == false ? '' : <div> Se envio el form</div>}
+        {isSubmit == false ? '' : <div className="alert alert-success" role="alert">Se registró la transferencia</div>}
         <div className="col">
             <input
                 type="text"
