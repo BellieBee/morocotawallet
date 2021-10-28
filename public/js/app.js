@@ -2121,7 +2121,8 @@ var App = function App(_ref) {
   var data = _ref.data,
       form = _ref.form,
       onChange = _ref.onChange,
-      onSubmit = _ref.onSubmit;
+      onSubmit = _ref.onSubmit,
+      isSubmit = _ref.isSubmit;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "container",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -2139,7 +2140,8 @@ var App = function App(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_TransferForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
           form: form,
           onChange: onChange,
-          onSubmit: onSubmit
+          onSubmit: onSubmit,
+          isSubmit: isSubmit
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "col-md-6",
@@ -2205,11 +2207,14 @@ __webpack_require__.r(__webpack_exports__);
 var TransferForm = function TransferForm(_ref) {
   var form = _ref.form,
       onChange = _ref.onChange,
-      onSubmit = _ref.onSubmit;
+      onSubmit = _ref.onSubmit,
+      isSubmit = _ref.isSubmit;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
     className: "row g-3",
     onSubmit: onSubmit,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: [isSubmit == false ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: " Se envio el form"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "col",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "text",
@@ -2457,13 +2462,18 @@ var AppContainer = function AppContainer() {
       error = _useFetchWallet.error;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
-    'description': '',
-    'amount': '',
-    'wallet_id': 1
+    description: '',
+    amount: '',
+    wallet_id: 1
   }),
       _useState2 = _slicedToArray(_useState, 2),
       form = _useState2[0],
       setForm = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      submited = _useState4[0],
+      setSubmit = _useState4[1];
 
   function handleChange(e) {
     var formState = {
@@ -2472,6 +2482,7 @@ var AppContainer = function AppContainer() {
       'wallet_id': 1
     };
     setForm(formState);
+    setSubmit(false);
   }
 
   function handleSubmit(_x) {
@@ -2505,25 +2516,31 @@ var AppContainer = function AppContainer() {
 
             case 8:
               dataTransfer = _context.sent;
+              setForm({
+                description: dataTransfer.description,
+                amount: dataTransfer.amount,
+                wallet_id: 1
+              });
               data.transfers = data.transfers.concat(dataTransfer);
               data.money = parseFloat(data.money) + parseFloat(dataTransfer.amount);
-              (0,_hooks_useFetchWallet__WEBPACK_IMPORTED_MODULE_5__["default"])('http://morocotawallet.dw/api/wallet');
-              _context.next = 17;
+              setSubmit(true);
+              _context.next = 19;
               break;
 
-            case 14:
-              _context.prev = 14;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](1);
               setForm({
                 error: _context.t0
               });
+              setSubmit(false);
 
-            case 17:
+            case 19:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 14]]);
+      }, _callee, null, [[1, 15]]);
     }));
     return _handleSubmit.apply(this, arguments);
   }
@@ -2534,7 +2551,8 @@ var AppContainer = function AppContainer() {
     data: data,
     form: form,
     onChange: handleChange,
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
+    isSubmit: submited
   });
 };
 

@@ -7,7 +7,8 @@ import useFetchWallet from "../hooks/useFetchWallet";
 
 const AppContainer = () => {
     const { data, loading, error } = useFetchWallet('http://morocotawallet.dw/api/wallet')
-    const [ form, setForm ] = useState({'description': '', 'amount': '', 'wallet_id': 1})
+    const [ form, setForm ] = useState({description: '', amount: '', wallet_id: 1})
+    const [ submited, setSubmit ] = useState(false)
 
     function handleChange (e) {
         let formState = {
@@ -16,6 +17,7 @@ const AppContainer = () => {
             'wallet_id': 1
         }
         setForm(formState)
+        setSubmit(false)
     }
 
     async function handleSubmit (e) {
@@ -31,12 +33,18 @@ const AppContainer = () => {
             }
             let res = await fetch('http://morocotawallet.dw/api/transfer', config)
             let dataTransfer = await res.json()
+            setForm({
+                description: dataTransfer.description,
+                amount: dataTransfer.amount,
+                wallet_id: 1
+            })
             data.transfers = data.transfers.concat(dataTransfer)
             data.money = parseFloat(data.money) + (parseFloat(dataTransfer.amount))
-            useFetchWallet('http://morocotawallet.dw/api/wallet')
+            setSubmit(true)
         }
         catch (error) {
             setForm({error})
+            setSubmit(false)
         }
     }
 
@@ -50,6 +58,7 @@ const AppContainer = () => {
             form={form}
             onChange={handleChange}
             onSubmit={handleSubmit}
+            isSubmit={submited}
         />
     )
 }
